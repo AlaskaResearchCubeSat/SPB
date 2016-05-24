@@ -5,8 +5,9 @@
       Name="Common"
       Platform="MSP430"
       Target="MSP430F6779A"
+      macros="ARC_prefix=Z:/ARC-2/ARC2-Software"
       build_use_hardware_multiplier="32-Bit Multiplier"
-      c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;Z:/Software/include"
+      c_system_include_directories="$(StudioDir)/include;$(PackagesDir)/include;$(ARC_prefix)/include"
       debug_threads_script="$(PackagesDir)/libraries/libctl/source/threads.js"
       libctl="Yes"
       link_symbol_definitions="CTL_IRQ_STACK_SIZE=128"
@@ -30,10 +31,10 @@
     </folder>
     <configuration
       Name="Debug"
-      linker_additional_files="Z:/Software/lib/BUSlib_Debug.hza;Z:/Software/lib/Error_printf_Debug.hza;Z:/Software/lib/termlib_Debug.hza;Z:/Software/lib/commandLib_Debug.hza;Z:/Software/lib/SD-lib_err_Debug.hza;Z:/Software/lib/UART_UCA1_Debug.hza" />
+      linker_additional_files="$(ARC_prefix)/lib/BUSlib_Debug.hza;$(ARC_prefix)/lib/Error_printf_Debug.hza;$(ARC_prefix)/lib/termlib_Debug.hza;$(ARC_prefix)/lib/commandLib_Debug.hza;$(ARC_prefix)/lib/SD-lib_err_Debug.hza;$(ARC_prefix)/lib/UART_UCA1_Debug.hza" />
     <configuration
       Name="Release"
-      linker_additional_files="Z:/Softwear/lib/BUSlib_Release.hza;Z:/Softwear/lib/Error_printg_Release.hza;Z:/Softwear/lib/termlib_Release.hza;Z:/Software/lib/UART_UCA1_Release.hza;Z:/Software/lib/commandLib_Release.hza;Z:/Software/lib/SD-lib_err_Release.hza" />
+      linker_additional_files="Z:/Softwear/lib/BUSlib_Release.hza;Z:/Softwear/lib/Error_printg_Release.hza;Z:/Softwear/lib/termlib_Release.hza;$(ARC_prefix)/lib/UART_UCA1_Release.hza;$(ARC_prefix)/lib/commandLib_Release.hza;$(ARC_prefix)/lib/SD-lib_err_Release.hza" />
   </project>
   <configuration
     Name="MSP430 Debug"

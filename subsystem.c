@@ -39,7 +39,7 @@ void sub_events(void *p) __toplevel{
       ptr=BUS_cmd_init(buf,CMD_EPS_STAT);
       //TODO: fill in telemitry data
       //send command
-      BUS_cmd_tx(BUS_ADDR_CDH,buf,0,0,BUS_I2C_SEND_FOREGROUND);
+      BUS_cmd_tx(BUS_ADDR_CDH,buf,0,0);
     }
     if(e&SUB_EV_SPI_DAT){
         //get length
