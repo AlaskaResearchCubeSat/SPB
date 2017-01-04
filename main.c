@@ -3,6 +3,7 @@
 #include <ARCbus.h>
 #include <Error.h>
 #include <terminal.h>
+#include <version.h>
 #include <UCA1_uart.h>
 #include "pins.h"
 #include "subsystem.h"
