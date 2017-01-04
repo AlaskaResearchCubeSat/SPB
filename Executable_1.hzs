@@ -23,6 +23,7 @@
  <Project>
   <ProjectSessionItem path="Executable_1" name="unnamed" />
   <ProjectSessionItem path="Executable_1;Executable_1" name="unnamed" />
+  <ProjectSessionItem path="Executable_1;Executable_1;Source Files" name="unnamed" />
  </Project>
  <Register1/>
  <Register2/>
@@ -45,7 +46,10 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="35" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="0" selected="1" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="25" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="44" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="0" selected="0" name="unnamed" top="9" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" y="722" path="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" left="0" selected="0" name="unnamed" top="676" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/main.c" y="32" path="Z:/Software/example_bare_bones/main.c" left="0" selected="1" name="unnamed" top="9" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/ARCbus.h" y="199" path="Z:/ARC-2/ARC2-Software/include/ARCbus.h" left="0" selected="0" name="unnamed" top="187" />
  </Files>
  <MSP430CrossStudioWindow activeProject="Executable_1" autoConnectTarget="" debugSearchFileMap="" fileDialogInitialDirectory="" fileDialogDefaultFilter="*.c" autoConnectCapabilities="0" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>
