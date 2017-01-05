@@ -1,6 +1,6 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="Executable_1" target="9" version="2">
-  <project Name="Executable_1">
+<solution Name="Example_Bare_Bones" target="9" version="2">
+  <project Name="Example_Bare_Bones">
     <configuration
       Name="Common"
       Platform="MSP430"
@@ -26,6 +26,7 @@
       <file file_name="commands.c" />
       <file file_name="subsystem.c" />
       <file file_name="stack.c" />
+      <file file_name="stack.h" />
     </folder>
     <folder Name="System Files">
       <configuration Name="Common" filter="xml" />
