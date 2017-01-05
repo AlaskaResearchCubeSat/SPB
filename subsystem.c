@@ -3,7 +3,6 @@
 #include <ARCbus.h>
 #include <Error.h>
 #include <SDlib.h>
-#include "pins.h"
 #include "subsystem.h"
 
 //handle subsystem spesific commands

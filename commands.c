@@ -2,12 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <ctl.h>
 #include <terminal.h>
 #include <commandLib.h>
-#include <ARCbus.h>
 #include <stdlib.h>
-#include "pins.h"
 
 
 int example_command(char **argv,unsigned short argc){

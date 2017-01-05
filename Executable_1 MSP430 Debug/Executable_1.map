@@ -49,12 +49,12 @@ SYMBOLS BY NAME
    11b9e CODE       _SPI_slave_setup    
     38d2 UDATA0     _SUB_events         
     c5d8 ISR        _SYS_NMI            
-   15544 CODE       _UCA1_Getc          
-    c726 ISR        _UCA1_ISR           
-    474a UDATA0     _UCA1_RxBuf         
-    47ee UDATA0     _UCA1_TxBuf         
-   15508 CODE       _UCA1_TxChar        
-   1542c CODE       _UCA1_init_UART     
+   15544 CODE       _UCA2_Getc          
+    c726 ISR        _UCA2_ISR           
+    474a UDATA0     _UCA2_RxBuf         
+    47ee UDATA0     _UCA2_TxBuf         
+   15508 CODE       _UCA2_TxChar        
+   1542c CODE       _UCA2_init_UART     
     efa8 CONST      ___RAL_ascii_ctype_map
    15de8 CODE       ___RAL_ascii_mbtowc 
    15e2e CODE       ___RAL_ascii_wctomb 
@@ -391,8 +391,8 @@ SYMBOLS BY VALUE
     418e UDATA0     _alarms             
     419e UDATA0     _saved_error        
     41ae UDATA0     _next_idx           
-    474a UDATA0     _UCA1_RxBuf         
-    47ee UDATA0     _UCA1_TxBuf         
+    474a UDATA0     _UCA2_RxBuf         
+    47ee UDATA0     _UCA2_TxBuf         
     4894 UDATA0     ___user_format_extender
     4896            ___begin_THREAD     
     4896 THREAD     _BUS_thread_addr_flags
@@ -426,7 +426,7 @@ SYMBOLS BY VALUE
     c71a ISR        ___thunk_replayCmd  
     c71e ISR        ___thunk_clearErrCmd
     c722 ISR        ___thunk_logCmd     
-    c726 ISR        _UCA1_ISR           
+    c726 ISR        _UCA2_ISR           
     c794 ISR        ___thunk___RAL_ascii_mbtowc
     c798 ISR        ___thunk___RAL_ascii_wctomb
     c79c CONST      _ARClib_version     
@@ -588,9 +588,9 @@ SYMBOLS BY VALUE
    15174 CODE       _clearErrCmd        
    15198 CODE       _logCmd             
    1521e CODE       _SD_error_str       
-   1542c CODE       _UCA1_init_UART     
-   15508 CODE       _UCA1_TxChar        
-   15544 CODE       _UCA1_Getc          
+   1542c CODE       _UCA2_init_UART     
+   15508 CODE       _UCA2_TxChar        
+   15544 CODE       _UCA2_Getc          
    15560 CODE       ___int32_mul        
    15582 CODE       ___int16_div        
    155a8 CODE       ___int16_mod        

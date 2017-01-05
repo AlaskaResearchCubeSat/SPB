@@ -2,41 +2,41 @@
 #include <ctl.h>
 #include <ARCbus.h>
 #include <Error.h>
-#include <terminal.h>
-#include <version.h>
-#include <UCA1_uart.h>
-#include "pins.h"
-#include "subsystem.h"
+#include <terminal.h> 
+#include <version.h>          // TODO this is a bad fix look into this 
+#include <UCA2_uart.h>        // UART setup 
+#include "pins.h"             // linked in bare_bones solution 
+#include "subsystem.h"        // linked in bare_bones solution 
+
 
 CTL_TASK_t terminal_task,sub_task;
 
 //stack for terminal
 unsigned terminal_stack[2000];
-//stack for sub_events
+//stack for subsystem events
 unsigned sub_stack[1000];
 
 //make printf and friends use async
 int __putchar(int c){
-  return UCA1_TxChar(c);
+  return UCA2_TxChar(c);
 }
 
 //make printf and friends use async
 int __getchar(void){
-  return UCA1_Getc();
+  return UCA2_Getc();
 }
-
-
 
 void main(void){
   //turn on LED's this will flash the LED's during startup
   P7OUT=0xFF;
   P7DIR=0xFF;
+
   //DO this first
   ARC_setup(); 
   //TESTING: set log level to report everything by default
   set_error_level(0);
   //initialize UART
-  UCA1_init_UART(UART_PORT,UART_TX_PIN_NUM,UART_RX_PIN_NUM);
+  UCA2_init_UART(UART_PORT,UART_TX_PIN_NUM,UART_RX_PIN_NUM);
 
   //setup bus interface
   initARCbus(0x1F);

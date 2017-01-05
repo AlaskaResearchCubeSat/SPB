@@ -25,16 +25,17 @@
       <file file_name="subsystem.h" />
       <file file_name="commands.c" />
       <file file_name="subsystem.c" />
+      <file file_name="stack.c" />
     </folder>
     <folder Name="System Files">
       <configuration Name="Common" filter="xml" />
     </folder>
     <configuration
       Name="Debug"
-      linker_additional_files="$(ARC_prefix)/lib/BUSlib_Debug.hza;$(ARC_prefix)/lib/Error_printf_Debug.hza;$(ARC_prefix)/lib/termlib_Debug.hza;$(ARC_prefix)/lib/commandLib_Debug.hza;$(ARC_prefix)/lib/SD-lib_err_Debug.hza;$(ARC_prefix)/lib/UART_UCA1_Debug.hza" />
+      linker_additional_files="$(ARC_prefix)/lib/BUSlib_Debug.hza;$(ARC_prefix)/lib/Error_printf_Debug.hza;$(ARC_prefix)/lib/termlib_Debug.hza;$(ARC_prefix)/lib/commandLib_Debug.hza;$(ARC_prefix)/lib/SD-lib_err_Debug.hza;$(ARC_prefix)/lib/UART_UCA2_Debug.hza" />
     <configuration
       Name="Release"
-      linker_additional_files="$(ARC_prefix)/lib/BUSlib_Release.hza;$(ARC_prefix)/lib/Error_printg_Release.hza;$(ARC_prefix)/lib/termlib_Release.hza;$(ARC_prefix)/lib/UART_UCA1_Release.hza;$(ARC_prefix)/lib/commandLib_Release.hza;$(ARC_prefix)/lib/SD-lib_err_Release.hza" />
+      linker_additional_files="$(ARC_prefix)/lib/BUSlib_Release.hza;$(ARC_prefix)/lib/Error_printg_Release.hza;$(ARC_prefix)/lib/termlib_Release.hza;$(ARC_prefix)/lib/UART_UCA2_Release.hza;$(ARC_prefix)/lib/commandLib_Release.hza;$(ARC_prefix)/lib/SD-lib_err_Release.hza" />
   </project>
   <configuration
     Name="MSP430 Debug"

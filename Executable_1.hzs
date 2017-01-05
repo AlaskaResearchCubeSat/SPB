@@ -46,12 +46,13 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="44" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="0" selected="0" name="unnamed" top="9" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="248" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="33" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="145" selected="1" name="unnamed" top="9" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" y="722" path="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" left="0" selected="0" name="unnamed" top="676" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="19" debugPath="Z:/Software/example_bare_bones/main.c" y="5" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="16" debugPath="Z:/Software/example_bare_bones/main.c" y="24" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="0" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/ARCbus.h" y="199" path="Z:/ARC-2/ARC2-Software/include/ARCbus.h" left="0" selected="0" name="unnamed" top="187" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/commands.c" y="0" path="Z:/Software/example_bare_bones/commands.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="68" debugPath="Z:/arc-2/arc2-software/include/version.h" y="3" path="Z:/arc-2/arc2-software/include/version.h" left="0" selected="1" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/arc-2/arc2-software/include/version.h" y="5" path="Z:/arc-2/arc2-software/include/version.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/UCA2_uart.h" y="9" path="Z:/ARC-2/ARC2-Software/include/UCA2_uart.h" left="0" selected="0" name="unnamed" top="0" />
  </Files>
- <MSP430CrossStudioWindow activeProject="Executable_1" autoConnectTarget="" debugSearchFileMap="" fileDialogInitialDirectory="" fileDialogDefaultFilter="*.c" autoConnectCapabilities="0" debugSearchPath="" buildConfiguration="MSP430 Debug" />
+ <MSP430CrossStudioWindow activeProject="Executable_1" autoConnectTarget="MSP-FET430UIF(V3)" debugSearchFileMap="" fileDialogInitialDirectory="" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>
