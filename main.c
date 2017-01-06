@@ -2,8 +2,7 @@
 #include <ctl.h>
 #include <ARCbus.h>
 #include <Error.h>
-#include <terminal.h> 
-#include <version.h>          // TODO this is a bad fix look into this 
+#include <terminal.h>         
 #include <UCA2_uart.h>        // UART setup 
 #include "pins.h"             // linked in bare_bones solution 
 #include "subsystem.h"        // linked in bare_bones solution 
