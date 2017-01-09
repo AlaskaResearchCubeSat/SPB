@@ -25,8 +25,6 @@
       <file file_name="subsystem.h" />
       <file file_name="commands.c" />
       <file file_name="subsystem.c" />
-      <file file_name="stack.c" />
-      <file file_name="stack.h" />
     </folder>
     <folder Name="System Files">
       <configuration Name="Common" filter="xml" />
