@@ -1,3 +1,8 @@
+/**********************************************************************************************************************************************
+The commands.c file is for commands that will be displayed through the serial terminal. 
+In order to add a command you must create a function as seen below.
+Then function must be added to the "const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd}" table at the end of the file.
+**********************************************************************************************************************************************/
 #include <msp430.h>
 #include <stdio.h>
 #include <string.h>
@@ -6,8 +11,10 @@
 #include <commandLib.h>
 #include <stdlib.h>
 #include <ARCbus.h>
+#include <SDlib.h>
+#include <i2c.h>
 
-
+//*********************************************************** passing arguments over the terminal *********************************************
 int example_command(char **argv,unsigned short argc){
   int i,j;
   //TODO replace printf with puts ? 
@@ -32,38 +39,141 @@ int example_command(char **argv,unsigned short argc){
   return 0;
 }
 
+
+//*********************************************************** Using the Timer_A1 ***************************************************************
+
 int example_timer_IR(char **argv,unsigned short argc){
+  int timer_check;
+  WDTCTL = WDTPW+WDTHOLD;                                   // Stop WDT
+  P7DIR |= 0xFF;                                            // Setting port 7 to drive LED's (0xFF ==1111 1111)
+  P7OUT = 0x00;                                             // Set all LED's on port 7 to start all off
+//************************************ Set up clock [0] 
+  TA2CTL |= TASSEL__ACLK | MC_2;                            // Setting Timer_A to ACLK(TASSEL_1) to continuous mode(MC_2)
 
-  WDTCTL = WDTPW+WDTHOLD;                   // stop WDT
-  TA0CTL|=MC_0 ;                             // 
-  
+//*********************************** Set timer interrupt enable [1] 
+  TA2CCTL0 |= CCIE;                                          // Capture/compare interrupt enable #0
+  TA2CCTL1 |= CCIE;                                          // Capture/compare interrupt enable #1
 
-//__interrupt void Timer_A(void){
-//  P7OUT=BIT7;
-//}
+//*********************************** Set the timer count IR value [2] 
+  TA2CCR0 = 10000;                                           // Timer0_A3 Capture/Compare @ 10000 counts
+  TA2CCR1 = 1000;                                            // TA0IV_1 Capture/Compare @ 1000 counts
 
-  /* AS SET UP IN ARCbus
-  //setup timer A to run off 32.768kHz xtal
-void init_timerA(void){
-    //setup timer A for ADC usage
-  //TACTL=TASSEL_1|ID_3|TACLR;
-  TACTL=TASSEL_1|ID_0|TACLR;
-}
-
-//start timer A in continuous mode
-void start_timerA(void){
-//start timer A
-  TACTL|=MC_2;
-} */
-  ARC_setup(); // put everything back
+   while (1)                                                // poll in while loop until a key press
+   {
+      if ((timer_check=getchar()) != EOF)
+     {
+      break;                                                 // break out of loop if a key is pressed
+     }
+    ctl_events_wait(CTL_EVENT_WAIT_ANY_EVENTS,0, 1<<15, CTL_TIMEOUT_DELAY, 1000); // wait in loop 
+   }
+  reset(0,ERR_SRC_CMD,CMD_ERR_RESET,0);                     // reset clock registers 
   return 0;
 }
+
+// ********************************* Timer_A0 interrupt code 
+void Timer_A2_A0(void)__interrupt[TIMER2_A0_VECTOR]{     // Timer A0 interrupt service routine TA0IV_TA0IFG. 
+  P7OUT^=BIT0; // toggle LEDs when IR is called
+}
+
+void Timer_A2_A1(void)__interrupt[TIMER2_A1_VECTOR]{     // Timer A0 interrupt service routine for capture comp 1 and 2
+        P7OUT^=BIT1; // light LEDs
+}
+
+//******************************************* Using the SD card *******************************************************************************
+
+int SD_write(char **argv,unsigned short argc){
+char buff[512];
+int mmcReturnValue, result , i;
+
+  mmcInit_msp();  // Sets up the interface for the card
+  mmc_pins_on();  //Sets up MSP to talk to SD card
+  mmcReturnValue=mmcInit_card();
+
+  if (mmcReturnValue==MMC_SUCCESS){ // check good initialization 
+    printf("\rCard initalized Sucessfully\r\n");
+  }
+  else{
+    printf("Check SD card.\r\nInitalized failed.\r\n Error %i\r\n",mmcReturnValue);
+  }
+
+//populate buffer block
+  for(i=1;i<=argc;i++) {// ignore 0 *argv input (argv[0]--> "SD_write" )
+    strcat(buff,argv[i]); // appends chars from one string to another
+    strcat(buff,"|");     // separates strings with | as strcat eats NULL
+  }
+
+//write to SD card
+  result= mmcWriteBlock(100,buff); //(unsigned char*) casting my pointer(array) as a char 
+ 
+  if (result>=0){ // check SD write 
+  printf("SD card write success.\r\n");
+  }
+  else{
+    printf("SD card write failed.\r\nError %i\r\n",result);
+  }
+  return 0;
+}
+
+int SD_read(void){
+  #define ASCIIOUT_STR  "%c "
+ char buffer[512];
+ int resp , i;
+  
+  //read from SD card
+ resp=mmcReadBlock(100,buffer);
+  //print response from SD card
+  printf("%s\r\n",SD_error_str(resp));
+
+        for(i=0;i<9;i++){//changed the 512 to 256 which is a result of changing CHAR TO INT
+
+        if(i<8){
+          printf(ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR "\r\n",
+          buffer[i*28+3],buffer[i*28+4],buffer[i*28+5],buffer[i*28+6],buffer[i*28+7],buffer[i*28+8],buffer[i*28+9],buffer[i*28+10],buffer[i*28+11],buffer[i*28+12],buffer[i*28+13],
+          buffer[i*28+14],buffer[i*28+15],buffer[i*28+16],buffer[i*28+17],buffer[i*28+18],buffer[i*28+19],buffer[i*28+20],buffer[i*28+21],buffer[i*28+22],buffer[i*28+23],
+          buffer[i*28+24],buffer[i*28+25],buffer[i*28+26],buffer[i*28+27],buffer[i*28+28],buffer[i*28+29],buffer[i*28+30]);
+          }
+
+        else{
+          printf(ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR ASCIIOUT_STR "\r\n",
+          buffer[i*28+3],buffer[i*28+4],buffer[i*28+5],buffer[i*28+6],buffer[i*28+7],buffer[i*28+8],buffer[i*28+9],buffer[i*28+10],buffer[i*28+11],buffer[i*28+12],buffer[i*28+13],
+          buffer[i*28+14],buffer[i*28+15],buffer[i*28+16],buffer[i*28+17],buffer[i*28+18],buffer[i*28+19],buffer[i*28+20],buffer[i*28+21],buffer[i*28+22],buffer[i*28+23],
+          buffer[i*28+24],buffer[i*28+25],buffer[i*28+26],buffer[i*28+27],buffer[i*28+28],buffer[i*28+29],buffer[i*28+30]);
+          }
+        }
+        return 0;
+}
+
+/*//TODO FIX ZACKS CODE D:
+void send_I2C(char **argv,unsigned short argc){
+  unsigned short addr, dat, resp;
+
+  // There should only be two passed arguments -- destination address and I2C command
+  if (argc > 2) {
+    printf("Too many arguments.\n");
+    return;
+  }
+
+  // Get integer value of address from passed string
+  addr=stoul(argv[0], NULL, 0);
+
+  // Get integer value of I2C command from passed string
+  dat=stoul(argv[1], NULL, 0);
+
+  // I2C_tx expects a char* for transmitted data, not an integer
+  resp=i2c_tx(addr, (char*)&dat, 1);
+
+}
+*/
 
 //table of commands with help
 const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd},
                    {"ex","[arg1] [arg2] ...\r\n\t""Example command to show how arguments are passed",example_command},
-                   {"timer_IR","[time]...\r\n\tExample command to show how the timer can be used as an interupt",example_timer_IR},
-                   ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,
+                  // {"timer_IR","[time]...\r\n\tExample command to show how the timer can be used as an interupt",example_timer_IR},
+                   {"SD_write","Writes given args to the SD card",SD_write},
+                   {"SD_read","",SD_read},
+                // {"send_I2C","Sends I2C command to subsystem",send_I2C},
+
+                   ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,MMC_COMMANDS,
                    //end of list
                    {NULL,NULL,NULL}};
 

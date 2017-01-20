@@ -3,7 +3,7 @@
  <Bookmarks/>
  <Breakpoints/>
  <EEMRegistersWindow>
-  <EEMRegisters moduleClockControl="0" generalClockControl="2e" />
+  <EEMRegisters moduleClockControl="2407" generalClockControl="2e" />
  </EEMRegistersWindow>
  <EEMStateStorageWindow>
   <EEMStateStorage control="2" />
@@ -16,19 +16,35 @@
  <FrameBufferWindow>
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
  </FrameBufferWindow>
- <Memory1/>
- <Memory2/>
- <Memory3/>
- <Memory4/>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+ </Memory4>
  <Project>
   <ProjectSessionItem path="Example_Bare_Bones" name="unnamed" />
   <ProjectSessionItem path="Example_Bare_Bones;Example_Bare_Bones" name="unnamed" />
   <ProjectSessionItem path="Example_Bare_Bones;Example_Bare_Bones;Source Files" name="unnamed" />
  </Project>
- <Register1/>
- <Register2/>
- <Register3/>
- <Register4/>
+ <Register1>
+  <RegisterWindow openNodes="CPU Registers" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU Registers/PC;CPU Registers/SP;CPU Registers/SR;CPU Registers/R4;CPU Registers/R5;CPU Registers/R6;CPU Registers/R7;CPU Registers/R8;CPU Registers/R9;CPU Registers/R10;CPU Registers/R11;CPU Registers/R12;CPU Registers/R13;CPU Registers/R14;CPU Registers/R15" name="Example_Bare_Bones" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU Registers" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU Registers/PC;CPU Registers/SP;CPU Registers/SR;CPU Registers/R4;CPU Registers/R5;CPU Registers/R6;CPU Registers/R7;CPU Registers/R8;CPU Registers/R9;CPU Registers/R10;CPU Registers/R11;CPU Registers/R12;CPU Registers/R13;CPU Registers/R14;CPU Registers/R15" name="Example_Bare_Bones" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU Registers" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU Registers/PC;CPU Registers/SP;CPU Registers/SR;CPU Registers/R4;CPU Registers/R5;CPU Registers/R6;CPU Registers/R7;CPU Registers/R8;CPU Registers/R9;CPU Registers/R10;CPU Registers/R11;CPU Registers/R12;CPU Registers/R13;CPU Registers/R14;CPU Registers/R15" name="Example_Bare_Bones" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU Registers" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU Registers/PC;CPU Registers/SP;CPU Registers/SR;CPU Registers/R4;CPU Registers/R5;CPU Registers/R6;CPU Registers/R7;CPU Registers/R8;CPU Registers/R9;CPU Registers/R10;CPU Registers/R11;CPU Registers/R12;CPU Registers/R13;CPU Registers/R14;CPU Registers/R15" name="Example_Bare_Bones" />
+ </Register4>
  <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
  <TraceWindow>
   <Trace enabled="Yes" />
@@ -46,10 +62,12 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="13" debugPath="Z:/Software/example_bare_bones/main.c" y="21" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="3" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="5" debugPath="Z:/Software/example_bare_bones/subsystem.c" y="46" path="Z:/Software/example_bare_bones/subsystem.c" left="0" selected="0" name="unnamed" top="21" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/subsystem.h" y="13" path="Z:/Software/example_bare_bones/subsystem.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/commands.c" y="35" path="Z:/Software/example_bare_bones/commands.c" left="0" selected="1" name="unnamed" top="22" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="18" debugPath="Z:/software/example_bare_bones/commands.c" y="13" path="Z:/software/example_bare_bones/commands.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="64" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="41" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="129" selected="1" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="56" debugPath="Z:/Software/example_bare_bones/main.c" y="42" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/SDlib.h" y="47" path="Z:/ARC-2/ARC2-Software/include/SDlib.h" left="0" selected="0" name="unnamed" top="17" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" y="6434" path="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" left="0" selected="0" name="unnamed" top="6410" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="45" debugPath="Z:/ARC-2/ARC2-Software/include/commandLib.h" y="56" path="Z:/ARC-2/ARC2-Software/include/commandLib.h" left="0" selected="0" name="unnamed" top="54" />
  </Files>
  <MSP430CrossStudioWindow activeProject="Example_Bare_Bones" autoConnectTarget="MSP-FET430UIF(V3)" debugSearchFileMap="" fileDialogInitialDirectory="" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>
