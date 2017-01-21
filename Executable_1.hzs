@@ -62,12 +62,10 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="18" debugPath="Z:/software/example_bare_bones/commands.c" y="13" path="Z:/software/example_bare_bones/commands.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="64" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="41" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="129" selected="1" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="56" debugPath="Z:/Software/example_bare_bones/main.c" y="42" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/software/example_bare_bones/commands.c" y="36" path="Z:/software/example_bare_bones/commands.c" left="0" selected="1" name="unnamed" top="162" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/main.c" y="42" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="38" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/SDlib.h" y="47" path="Z:/ARC-2/ARC2-Software/include/SDlib.h" left="0" selected="0" name="unnamed" top="17" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" y="6434" path="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" left="0" selected="0" name="unnamed" top="6410" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="45" debugPath="Z:/ARC-2/ARC2-Software/include/commandLib.h" y="56" path="Z:/ARC-2/ARC2-Software/include/commandLib.h" left="0" selected="0" name="unnamed" top="54" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" y="6505" path="C:/Users/cjodell2/AppData/Local/Rowley Associates Limited/CrossWorks for MSP430/v3/packages/include/msp430f6779a.h" left="0" selected="0" name="unnamed" top="6476" />
  </Files>
  <MSP430CrossStudioWindow activeProject="Example_Bare_Bones" autoConnectTarget="MSP-FET430UIF(V3)" debugSearchFileMap="" fileDialogInitialDirectory="" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>

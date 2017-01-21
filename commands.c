@@ -40,8 +40,12 @@ int example_command(char **argv,unsigned short argc){
 }
 
 
-//*********************************************************** Using the Timer_A1 ***************************************************************
-
+/*********************************************************** Using the Timer_A1 ***************************************************************
+* DONT USE TIMER0_Ax_VECTOR !!! this interrupt is use in library code and will cause a collision 
+* Use TIMERx_Ay_VECTOR x=2,3 & y=0,1
+* TIMER0_Ax_VECTOR used in ARClib ? 
+* TIMER1_Ax_VECTOR used in ????
+**********************************************************************************************************************************************/
 int example_timer_IR(char **argv,unsigned short argc){
   int timer_check;
   WDTCTL = WDTPW+WDTHOLD;                                   // Stop WDT
