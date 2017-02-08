@@ -74,7 +74,11 @@ int example_timer_IR(char **argv,unsigned short argc){
   return 0;
 }
 
-// ********************************* Timer_A0 interrupt code 
+// ********************************* Timer_A0 interrupt code ***********************************************************************************
+//NOTE: to use interrupts you usually need need to enable global interrupts using _ENIR();
+//      This is not necessary when using ARClib code as the enable is called in ARClib
+//NOTE: For P1IV you still need to enable P1IE registers 
+//**********************************************************************************************************************************************
 void Timer_A2_A0(void)__interrupt[TIMER2_A0_VECTOR]{     // Timer A0 interrupt service routine TA0IV_TA0IFG. 
   P7OUT^=BIT0; // toggle LEDs when IR is called
 }
@@ -118,7 +122,7 @@ int mmcReturnValue, result , i;
   return 0;
 }
 
-int SD_read(void){
+int SD_read(char **argv,unsigned short argc){
   #define ASCIIOUT_STR  "%c "
  char buffer[512];
  int resp , i;
@@ -147,37 +151,51 @@ int SD_read(void){
         return 0;
 }
 
-/*//TODO FIX ZACKS CODE D:
-void send_I2C(char **argv,unsigned short argc){
-  unsigned short addr, dat, resp;
+//******************************************************** Sending an I2C packet
+int send_I2C(char **argv,unsigned short argc){
+  unsigned short addr, cmd_id, resp, payload_count=argc-2, i;
+  unsigned char packet[4+BUS_I2C_HDR_LEN+BUS_I2C_CRC_LEN], *payload;
 
-  // There should only be two passed arguments -- destination address and I2C command
-  if (argc > 2) {
-    printf("Too many arguments.\n");
-    return;
+  if (argc < 2) {
+    printf("Not enough arguments.\n");
+    return 0;
   }
 
   // Get integer value of address from passed string
-  addr=stoul(argv[0], NULL, 0);
-
+  addr=strtoul(argv[1], NULL, 0);
   // Get integer value of I2C command from passed string
-  dat=stoul(argv[1], NULL, 0);
+  cmd_id=strtoul(argv[2], NULL, 0);
 
+  // Initialize packet with source I2C address, and I2C command
+  payload=BUS_cmd_init(packet, cmd_id);
+
+  for (i=payload_count; i > 0; --i) {
+    payload[payload_count-i]=strtoul(argv[payload_count-i+2], NULL, 0); 
+  }
+
+  // Transmit packet to addr. Payload is zero length. 
+  resp=BUS_cmd_tx(addr, packet, payload_count, 0);
+
+  /*initI2C(4,1,0);
   // I2C_tx expects a char* for transmitted data, not an integer
-  resp=i2c_tx(addr, (char*)&dat, 1);
+  resp=i2c_tx(addr, (unsigned char*)&cmd_id, 1);
+  if (resp < 0){
+    printf("I2C transaction error.\n");
+  }*/
 
+  return 0;
 }
-*/
+
 
 //table of commands with help
 const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd},
                    {"ex","[arg1] [arg2] ...\r\n\t""Example command to show how arguments are passed",example_command},
-                  // {"timer_IR","[time]...\r\n\tExample command to show how the timer can be used as an interupt",example_timer_IR},
+                   {"timer_IR","[time]...\r\n\tExample command to show how the timer can be used as an interupt",example_timer_IR},
                    {"SD_write","Writes given args to the SD card",SD_write},
                    {"SD_read","",SD_read},
-                // {"send_I2C","Sends I2C command to subsystem",send_I2C},
+                   {"send_I2C","Sends I2C command to subsystem",send_I2C},
 
-                   ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,MMC_COMMANDS,
+                   ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,
                    //end of list
                    {NULL,NULL,NULL}};
 

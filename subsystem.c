@@ -11,6 +11,7 @@ CTL_EVENT_SET_t SYS_evt; // This creates the event struct,change SYS to actual s
 //handle subsystem specific commands - this is for I2C commands on the BUS that are not SUB events, so system specific commands.
 int SUB_parseCmd(unsigned char src,unsigned char cmd,unsigned char *dat,unsigned short len){
   switch(cmd){
+
     default:
       return ERR_UNKNOWN_CMD;
   }
@@ -41,6 +42,9 @@ void sub_events(void *p) __toplevel{
       //ptr=BUS_cmd_init(buf,CMD_SYS_STAT); // replace CMD_SYS_STAT with actual subsystem ie CMD_COMM_STAT
       //send command
       //BUS_cmd_tx(BUS_ADDR_CDH,buf,0,0); //sending status contained in "buf" CDH 
+
+      // FOR TESTING SEND_I2C command!!
+
     }
     if(e&SUB_EV_SPI_DAT){ // ************************************** Sent when SPI data is received correctly **************************************************
       puts("SPI data rx\r");
