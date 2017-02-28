@@ -31,14 +31,13 @@ int __getchar(void){
 
 //******************************************* Example_Bare_bones main loop
 void main(void){
+  //DO this first
+  ARC_setup();
+
   //turn on LED's this will flash the LED's during startup
-  P7OUT=0xFF;
   P7DIR=0xFF;
   //init complete turn on LED0 and all others off
-  P7OUT=0x1F;
-
-  //DO this first
-  ARC_setup(); 
+  P7OUT=0x00;
 
   //TESTING: set log level to report everything by default
   set_error_level(0);
@@ -46,8 +45,10 @@ void main(void){
   //initialize UART
   UCA2_init_UART(UART_PORT,UART_TX_PIN_NUM,UART_RX_PIN_NUM);
 
+  //BUS_register_cmd_callback(&IMG_parse);
+
   //setup bus interface
-  initARCbus(0x1F);   // Default addr for "SYS" subsystem, should be changed for specific subsystems.
+  initARCbus(0x14);   // Default addr for "SYS" subsystem, should be changed for specific subsystems.
 
   // initialize stacks (3) 
   memset(terminal_stack,0xcd,sizeof(terminal_stack));                                           //write known values into the stack 

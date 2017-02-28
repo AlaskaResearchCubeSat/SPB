@@ -175,7 +175,12 @@ int send_I2C(char **argv,unsigned short argc){
 
   // Transmit packet to addr. Payload is zero length. 
   resp=BUS_cmd_tx(addr, packet, payload_count, 0);
-
+  if (resp == 0) {
+    printf("Valid response\n");
+  }
+  else {
+    printf("Error: %d\n", resp);
+  }
   /*initI2C(4,1,0);
   // I2C_tx expects a char* for transmitted data, not an integer
   resp=i2c_tx(addr, (unsigned char*)&cmd_id, 1);
