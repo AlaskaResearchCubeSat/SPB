@@ -2,7 +2,8 @@
 #include <ctl.h>
 #include <ARCbus.h>
 #include <Error.h>
-#include <terminal.h>         
+#include <terminal.h>       
+#include <string.h>           // for memset function  
 #include <UCA2_uart.h>        // UART setup 
 #include "pins.h"             // linked in bare_bones solution 
 #include "subsystem.h"        // linked in bare_bones solution 

@@ -2,7 +2,7 @@
 <session>
  <Bookmarks/>
  <Breakpoints>
-  <BreakpointListItem line="159" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="Z:/Software/example_bare_bones/commands.c" expression="" />
+  <BreakpointListItem line="159" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="commands.c" expression="" />
   <BreakpointListItem line="200" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" expression="" />
  </Breakpoints>
  <EEMRegistersWindow>
@@ -20,16 +20,16 @@
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
  </FrameBufferWindow>
  <Memory1>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
  </Memory1>
  <Memory2>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
  </Memory2>
  <Memory3>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
  </Memory3>
  <Memory4>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="Example_Bare_Bones" addressSpace="" />
  </Memory4>
  <Project>
   <ProjectSessionItem path="Example_Bare_Bones" name="unnamed" />
@@ -65,13 +65,14 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/main.c" y="38" path="Z:/Software/example_bare_bones/main.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="main.c" y="41" path="main.c" left="0" selected="0" name="unnamed" top="24" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/ARCbus.h" y="228" path="Z:/ARC-2/ARC2-Software/include/ARCbus.h" left="0" selected="0" name="unnamed" top="201" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" y="881" path="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" left="0" selected="0" name="unnamed" top="858" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/Executable_1.hzp" y="37" path="Z:/Software/example_bare_bones/Executable_1.hzp" left="0" selected="1" name="unnamed" top="9" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Executable_1.hzp" y="37" path="Executable_1.hzp" left="0" selected="0" name="unnamed" top="9" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="z:/arc-2/arc2-software/libraries/arclib/isr.c" y="397" path="Z:/arc-2/arc2-software/libraries/arclib/ISR.c" left="0" selected="0" name="unnamed" top="368" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/commands.c" y="0" path="Z:/Software/example_bare_bones/commands.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/Software/example_bare_bones/pins.h" y="31" path="Z:/Software/example_bare_bones/pins.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="2" debugPath="commands.c" y="164" path="commands.c" left="0" selected="1" name="unnamed" top="141" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="pins.h" y="31" path="pins.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="subsystem.c" y="0" path="subsystem.c" left="0" selected="0" name="unnamed" top="0" />
  </Files>
- <MSP430CrossStudioWindow activeProject="Example_Bare_Bones" autoConnectTarget="MSP-FET430UIF(V3)" debugSearchFileMap="" fileDialogInitialDirectory="Z:/ARC-2/ARC2-Software/Libraries/ARClib" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
+ <MSP430CrossStudioWindow activeProject="Example_Bare_Bones" autoConnectTarget="MSP-FET" debugSearchFileMap="" fileDialogInitialDirectory="Z:/ARC-2/ARC2-Software/Libraries/ARClib" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>
