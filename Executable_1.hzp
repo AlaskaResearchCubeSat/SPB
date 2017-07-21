@@ -1,6 +1,6 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="Example_Bare_Bones" target="9" version="2">
-  <project Name="Example_Bare_Bones">
+<solution Name="SPB-jig" target="9" version="2">
+  <project Name="SPB-jig">
     <configuration
       Name="Common"
       Platform="MSP430"
@@ -22,9 +22,11 @@
       <configuration Name="Common" filter="c;h;s;asm;inc;s43" />
       <file file_name="main.c" />
       <file file_name="pins.h" />
-      <file file_name="subsystem.h" />
       <file file_name="commands.c" />
-      <file file_name="subsystem.c" />
+      <file file_name="temperature_sensor.c" />
+      <file file_name="temperature_sensor.h" />
+      <file file_name="luminance_sensor.c" />
+      <file file_name="luminance_sensor.h" />
     </folder>
     <folder Name="System Files">
       <configuration Name="Common" filter="xml" />

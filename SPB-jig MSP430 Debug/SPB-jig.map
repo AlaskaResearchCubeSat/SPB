@@ -5,9 +5,9 @@ SYMBOLS BY NAME
     2e96 UDATA0     _ARC_bus_helper_task
     30b6 UDATA0     _ARC_bus_task       
    12a6e CODE       _ARC_setup          
-    d1a9 CONST      _ARClib_version     
+    d1bf CONST      _ARClib_version     
    15842 CODE       _ARClib_version_Cmd 
-    d1bc CONST      _ARClib_vstruct     
+    d1d2 CONST      _ARClib_vstruct     
    1578c CODE       _ARCsearch_Cmd      
    12322 CODE       _BUS_I2C_release    
     2eb2 UDATA0     _BUS_INT_events     
@@ -45,8 +45,8 @@ SYMBOLS BY NAME
    13b10 CODE       _PMM_setVCoreDown   
    13a16 CODE       _PMM_setVCoreUp     
    15e6e CODE       _SD_error_str       
-    f742 CODE       _SD_read            
-    f6bc CODE       _SD_write           
+    f758 CODE       _SD_read            
+    f6d2 CODE       _SD_write           
    161b0 CODE       _SPISetup           
    129a2 CODE       _SPI_deactivate     
    161c6 CODE       _SPI_fast           
@@ -63,26 +63,26 @@ SYMBOLS BY NAME
     400a UDATA0     _UCA2_TxBuf         
    16158 CODE       _UCA2_TxChar        
    1607c CODE       _UCA2_init_UART     
-    f358 CONST      ___RAL_ascii_ctype_map
+    f36e CONST      ___RAL_ascii_ctype_map
    17798 CODE       ___RAL_ascii_mbtowc 
    177de CODE       ___RAL_ascii_wctomb 
-    f532 CONST      ___RAL_c_locale     
-    f430 CONST      ___RAL_c_locale_abbrev_day_names
-    f4a4 CONST      ___RAL_c_locale_abbrev_month_names
-    f4d5 CONST      ___RAL_c_locale_am_pm_indicator
-    f500 CONST      ___RAL_c_locale_data
-    f4dc CONST      ___RAL_c_locale_date_format
-    f4ee CONST      ___RAL_c_locale_date_time_format
-    f3f6 CONST      ___RAL_c_locale_day_names
-    f44d CONST      ___RAL_c_locale_month_names
-    f4e5 CONST      ___RAL_c_locale_time_format
-    f3e6 CONST      ___RAL_codeset_ascii
-    f4ff CONST      ___RAL_data_empty_string
-    f4fd CONST      ___RAL_data_utf8_period
+    f548 CONST      ___RAL_c_locale     
+    f446 CONST      ___RAL_c_locale_abbrev_day_names
+    f4ba CONST      ___RAL_c_locale_abbrev_month_names
+    f4eb CONST      ___RAL_c_locale_am_pm_indicator
+    f516 CONST      ___RAL_c_locale_data
+    f4f2 CONST      ___RAL_c_locale_date_format
+    f504 CONST      ___RAL_c_locale_date_time_format
+    f40c CONST      ___RAL_c_locale_day_names
+    f463 CONST      ___RAL_c_locale_month_names
+    f4fb CONST      ___RAL_c_locale_time_format
+    f3fc CONST      ___RAL_codeset_ascii
+    f515 CONST      ___RAL_data_empty_string
+    f513 CONST      ___RAL_data_utf8_period
     1c2c IDATA0     ___RAL_global_locale
    173d2 CODE       ___RAL_global_locale_category
-    f330 CONST      ___RAL_hex_lc       
-    f320 CONST      ___RAL_hex_uc       
+    f346 CONST      ___RAL_hex_lc       
+    f336 CONST      ___RAL_hex_uc       
    1778a CODE       ___RAL_init_mbstate 
    17336 CODE       ___RAL_isctype      
    170d0 CODE       ___RAL_pow10        
@@ -117,11 +117,11 @@ SYMBOLS BY NAME
    17850 CODE       ___float32_isnan    
    17ce2 CODE       ___float32_lt       
    17b4c CODE       ___float32_mul      
-    f53a CONST      ___float32_nan      
+    f550 CONST      ___float32_nan      
    17868 CODE       ___float32_signbit  
    17b40 CODE       ___float32_sub      
    1799c CODE       ___float32_to_int64 
-    f54e CODE       ___getchar          
+    f564 CODE       ___getchar          
    16f12 CODE       ___int16_div        
    16f38 CODE       ___int16_mod        
    16f5e CODE       ___int16_mul        
@@ -131,7 +131,7 @@ SYMBOLS BY NAME
    117c2 CODE       ___printf_lock      
    117de CODE       ___printf_unlock    
    17244 CODE       ___putc             
-    f53e CODE       ___putchar          
+    f554 CODE       ___putchar          
    17126 CODE       ___strtoul          
     c72a ISR        ___thunk_ARClib_version_Cmd
     c726 ISR        ___thunk_ARCsearch_Cmd
@@ -189,7 +189,7 @@ SYMBOLS BY NAME
    172e6 CODE       _atoi               
    1730c CODE       _atol               
     375c UDATA0     _buffer_mutex       
-    e5b2 CONST      _busAddrSym         
+    e5c8 CONST      _busAddrSym         
     c03c ISR        _bus_I2C_isr        
     c478 ISR        _bus_SPI_isr        
    14606 CODE       _bus_flags_tostr    
@@ -201,10 +201,10 @@ SYMBOLS BY NAME
     1c1a IDATA0     _closed_event       
     1c1c IDATA0     _closed_flag        
     1c12 IDATA0     _cmd_parse_list     
-    fc68 CODE       _cmd_read_lux       
-    fc2e CODE       _cmd_read_temp      
-    fcaa CODE       _cmd_start_lux      
-    fd7a CODE       _cmd_status_lux     
+    fc7e CODE       _cmd_read_lux       
+    fc44 CODE       _cmd_read_temp      
+    fcbc CODE       _cmd_start_lux      
+    fd8c CODE       _cmd_status_lux     
     c8e8 CONST      _cmd_tbl            
    128fa CODE       _crc16              
    128c8 CODE       _crc7               
@@ -264,8 +264,8 @@ SYMBOLS BY NAME
    14d32 CODE       _error_log_mem_replay
    14db4 CODE       _error_log_replay   
    14a10 CODE       _error_recording_start
-    f5ce CODE       _example_command    
-    f652 CODE       _example_timer_IR   
+    f5e4 CODE       _example_command    
+    f668 CODE       _example_timer_IR   
    17fe6 CODE       _fabsf              
    17da4 CODE       _floor              
    17da4 CODE       _floorf             
@@ -296,7 +296,7 @@ SYMBOLS BY NAME
    17354 CODE       _isupper            
    17fec CODE       _ldexp              
    15de8 CODE       _logCmd             
-    f554 CODE       _main               
+    f56a CODE       _main               
    136ea CODE       _mainLoop           
    146da CODE       _main_return        
    14e76 CODE       _make_args          
@@ -329,7 +329,7 @@ SYMBOLS BY NAME
    174de CODE       _puts               
    12c00 CODE       _readTA1            
    1001c CODE       _read_lux_all       
-    fe38 CODE       _read_temp          
+    fe4a CODE       _read_temp          
    14b68 CODE       _record_error       
    15d38 CODE       _replayCmd          
    14cc0 CODE       _report_error       
@@ -337,7 +337,7 @@ SYMBOLS BY NAME
    15430 CODE       _restCmd            
     3762 UDATA0     _rxbuf              
     39ba UDATA0     _saved_error        
-    fb8e CODE       _send_I2C           
+    fba4 CODE       _send_I2C           
    14aac CODE       _set_error_level    
    12946 CODE       _setget_ticker_time 
    1567a CODE       _spiCmd             
@@ -369,8 +369,8 @@ SYMBOLS BY NAME
    15ac8 CODE       _timesliceCmd       
    154fc CODE       _txCmd              
     388e UDATA0     _txbuf              
-    d202 CONST      thread_init_begin   
-    d206 CONST      thread_init_end     
+    d218 CONST      thread_init_begin   
+    d21c CONST      thread_init_end     
 
 
 SYMBOLS BY VALUE
@@ -387,9 +387,9 @@ SYMBOLS BY VALUE
      4e6            ___crt_res1         
      4e8            ___crt_res2         
      4ea            ___crt_res3         
-    1c00            ___RAM_Address      
     1c00 IDATA0     _ctl_timeslice_period
     1c00            ___begin_IDATA0     
+    1c00            ___RAM_Address      
     1c04 IDATA0     _ctl_time_increment 
     1c06 IDATA0     _ctl_libc_mutex     
     1c10 IDATA0     _powerState         
@@ -401,9 +401,9 @@ SYMBOLS BY VALUE
     1c22 IDATA0     _mmcStat            
     1c2a IDATA0     ___ungot            
     1c2c IDATA0     ___RAL_global_locale
-    1c36            ___end_IDATA0       
     1c36 UDATA0     _terminal_stack     
     1c36            ___begin_UDATA0     
+    1c36            ___end_IDATA0       
     2bd6 UDATA0     _terminal_task      
     2bf2 UDATA0     _ctl_task_switch_callout
     2bf4 UDATA0     _ctl_last_schedule_time
@@ -439,8 +439,8 @@ SYMBOLS BY VALUE
     400a UDATA0     _UCA2_TxBuf         
     40b6 UDATA0     _I2C_stat           
     40c6 UDATA0     ___user_format_extender
-    40c8 THREAD     _BUS_thread_addr_flags
     40c8            ___end_UDATA0       
+    40c8 THREAD     _BUS_thread_addr_flags
     40c8            ___begin_THREAD     
     40cc            ___end_THREAD       
     8000            ___RAM_Size         
@@ -486,41 +486,41 @@ SYMBOLS BY VALUE
     c8a2 ISR        ___thunk___RAL_ascii_mbtowc
     c8a6 ISR        ___thunk___RAL_ascii_wctomb
     c8e8 CONST      _cmd_tbl            
-    d1a9 CONST      _ARClib_version     
-    d1bc CONST      _ARClib_vstruct     
-    d202 CONST      thread_init_begin   
-    d206 CONST      thread_init_end     
-    e5b2 CONST      _busAddrSym         
-    f320 CONST      ___RAL_hex_uc       
-    f330 CONST      ___RAL_hex_lc       
-    f358 CONST      ___RAL_ascii_ctype_map
-    f3e6 CONST      ___RAL_codeset_ascii
-    f3f6 CONST      ___RAL_c_locale_day_names
-    f430 CONST      ___RAL_c_locale_abbrev_day_names
-    f44d CONST      ___RAL_c_locale_month_names
-    f4a4 CONST      ___RAL_c_locale_abbrev_month_names
-    f4d5 CONST      ___RAL_c_locale_am_pm_indicator
-    f4dc CONST      ___RAL_c_locale_date_format
-    f4e5 CONST      ___RAL_c_locale_time_format
-    f4ee CONST      ___RAL_c_locale_date_time_format
-    f4fd CONST      ___RAL_data_utf8_period
-    f4ff CONST      ___RAL_data_empty_string
-    f500 CONST      ___RAL_c_locale_data
-    f532 CONST      ___RAL_c_locale     
-    f53a CONST      ___float32_nan      
-    f53e CODE       ___putchar          
-    f54e CODE       ___getchar          
-    f554 CODE       _main               
-    f5ce CODE       _example_command    
-    f652 CODE       _example_timer_IR   
-    f6bc CODE       _SD_write           
-    f742 CODE       _SD_read            
-    fb8e CODE       _send_I2C           
-    fc2e CODE       _cmd_read_temp      
-    fc68 CODE       _cmd_read_lux       
-    fcaa CODE       _cmd_start_lux      
-    fd7a CODE       _cmd_status_lux     
-    fe38 CODE       _read_temp          
+    d1bf CONST      _ARClib_version     
+    d1d2 CONST      _ARClib_vstruct     
+    d218 CONST      thread_init_begin   
+    d21c CONST      thread_init_end     
+    e5c8 CONST      _busAddrSym         
+    f336 CONST      ___RAL_hex_uc       
+    f346 CONST      ___RAL_hex_lc       
+    f36e CONST      ___RAL_ascii_ctype_map
+    f3fc CONST      ___RAL_codeset_ascii
+    f40c CONST      ___RAL_c_locale_day_names
+    f446 CONST      ___RAL_c_locale_abbrev_day_names
+    f463 CONST      ___RAL_c_locale_month_names
+    f4ba CONST      ___RAL_c_locale_abbrev_month_names
+    f4eb CONST      ___RAL_c_locale_am_pm_indicator
+    f4f2 CONST      ___RAL_c_locale_date_format
+    f4fb CONST      ___RAL_c_locale_time_format
+    f504 CONST      ___RAL_c_locale_date_time_format
+    f513 CONST      ___RAL_data_utf8_period
+    f515 CONST      ___RAL_data_empty_string
+    f516 CONST      ___RAL_c_locale_data
+    f548 CONST      ___RAL_c_locale     
+    f550 CONST      ___float32_nan      
+    f554 CODE       ___putchar          
+    f564 CODE       ___getchar          
+    f56a CODE       _main               
+    f5e4 CODE       _example_command    
+    f668 CODE       _example_timer_IR   
+    f6d2 CODE       _SD_write           
+    f758 CODE       _SD_read            
+    fba4 CODE       _send_I2C           
+    fc44 CODE       _cmd_read_temp      
+    fc7e CODE       _cmd_read_lux       
+    fcbc CODE       _cmd_start_lux      
+    fd8c CODE       _cmd_status_lux     
+    fe4a CODE       _read_temp          
    1001c CODE       _read_lux_all       
    10226 CODE       ___vfprintf_float_long_long
    10226 CODE       ___vfprintf         
@@ -738,8 +738,8 @@ SYMBOLS BY VALUE
    17ce2 CODE       ___float32_lt       
    17cfe CODE       ___float32_eq       
    17d0e CODE       _modff              
-   17da4 CODE       _floorf             
    17da4 CODE       _floor              
+   17da4 CODE       _floorf             
    17e74 CODE       _fmod               
    17e74 CODE       _fmodf              
    17fe6 CODE       _fabsf              

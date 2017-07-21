@@ -22,32 +22,32 @@ void read_temp(int * temp){
       if (check_value_tx==1)
         {
           check_value_rx = i2c_rx(all_temp_sensors[i],(unsigned char *)tmp,2); // place the address I want to talk to,                                                            
-          array[i]=tmp[0];                                    // the array that stores my data, number of bytes being sent
+          temp[i]=tmp[0];                                    // the array that stores my data, number of bytes being sent
           ctl_timeout_wait(ctl_get_current_time()+1000);
         }
       else if (check_value_tx==0)                             // returns a zero if idle
         {                                                     // I don't think this is ever returned, only viewable as a status
-          array[i]=500;
+          temp[i]=500;
         }
       else if (check_value_tx == I2C_ERR_NACK)                  // returns a -1 if NACK generated
         {                                                     // no device attached/ connection broken
-          array[i]=1111;
+          temp[i]=1111;
         }
       else if (check_value_tx == I2C_ERR_TIMEOUT)               // returns a -2 if timeout
         {                                                     // device doesn't release the line, or pullups are missing
-          array[i]=2222;
+          temp[i]=2222;
         }
       else if (check_value_tx == I2C_ERR_LEN)                   // returns a -3 in incorrect packet length
         {
-          array[i]=3333;
+          temp[i]=3333;
         }
       else if (check_value_tx == I2C_ERR_BUSY_TIMEOUT)          // returns a -4 if busy waiting for bus
         {                                                     // device doesn't release the line, or pullups are missing
-          array[i]=4444;
+          temp[i]=4444;
         }
       else                                                    // undefined 
         {
-          array[i]=9999;
+          temp[i]=9999;
         }
     }
 }

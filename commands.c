@@ -13,6 +13,8 @@ Then function must be added to the "const CMD_SPEC cmd_tbl[]={{"help"," [command
 #include <ARCbus.h>
 #include <SDlib.h>
 #include <i2c.h>
+#include <temperature_sensor.h>
+#include <luminance_sensor.h>
 
 //*********************************************************** passing arguments over the terminal *********************************************
 int example_command(char **argv,unsigned short argc){
@@ -191,6 +193,68 @@ int send_I2C(char **argv,unsigned short argc){
   return 0;
 }
 
+int cmd_read_temp(char **argv,unsigned short argc){
+  int array[7];
+  int ii;
+
+  read_temp(array);
+
+  printf("Temperatures: \r\n");
+  for(ii = 0; ii < 7; ++ii){
+    printf("%d\r\n",array[ii]);
+  }  
+  return 0;
+}
+
+int cmd_read_lux(char **argv,unsigned short argc){
+  long array[5];
+  int ii;
+
+  read_lux_all(array);
+
+  printf("Luminance, IR, Green, Blue, Red: \r\n");
+  for(ii = 0; ii < 5; ++ii){
+    printf("%lu, ",array[ii]);
+  }  
+
+  return 0;
+}
+
+int cmd_start_lux(char **argv,unsigned short argc){
+  unsigned char start[2]={LS_MAIN_CTRL,LS_EN}, 
+                standby[2] = {LS_MAIN_CTRL,0x00},
+                status[1] = {LS_MAIN_STATUS},
+                part[1] = {LS_PART_ID},
+                resolution[2] = {LS_MEAS_RATE, (LS_RES_20BIT<<4) & (LS_MEAS_500MS) }, 
+                gain[2] = {LS_GAIN,LS_GAIN_1};
+  unsigned char read[8];
+  int tx_err;
+  tx_err = i2c_txrx(LS_ADDR,status,1,read,2);
+  ctl_timeout_wait(ctl_get_current_time()+200);
+
+  printf("Status: %x \r\n",read[0]);
+  printf("Error code: %d \r\n",tx_err);
+               
+  return 0;
+ }
+
+ int cmd_status_lux(char **argv,unsigned short argc){
+  unsigned char start[2]={LS_MAIN_CTRL,LS_EN}, 
+                standby[2] = {LS_MAIN_CTRL,0x00},
+                status[1] = {LS_MAIN_STATUS},
+                part[1] = {LS_PART_ID},
+                resolution[2] = {LS_MEAS_RATE, (LS_RES_20BIT<<4) & (LS_MEAS_500MS) }, 
+                gain[2] = {LS_GAIN,LS_GAIN_1};
+  unsigned char read[8];
+  int tx_err;
+  i2c_txrx(LS_ADDR,status,1,read,2);
+  ctl_timeout_wait(ctl_get_current_time()+200);
+
+  printf("Status: % \r\n",read[0]);
+               
+  return 0;
+ }
+
 
 //table of commands with help
 const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd},
@@ -199,6 +263,10 @@ const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd},
                    {"SD_write","Writes given args to the SD card",SD_write},
                    {"SD_read","",SD_read},
                    {"send_I2C","Sends I2C command to subsystem",send_I2C},
+                   {"read_temp","Read the values from all the temperature sensors",cmd_read_temp},
+                   {"read_lux","Read the values from all the luminance sensors",cmd_read_lux},
+                   {"start_lux","Read the values from all the luminance sensors",cmd_start_lux},
+                   {"status_lux","Status of the luminance sensors",cmd_status_lux},
 
                    ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,
                    //end of list
