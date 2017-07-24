@@ -2,7 +2,7 @@
 #define _LUMINANCE_SENSOR_H
 
 /************************************************************
-* Define luminance addresses and registers
+* Define luminance addresses
 ************************************************************/
 #define LS_ADDR           0x52
 
@@ -24,6 +24,15 @@
 #define LS_EN             BIT1
 #define LS_DATA_STATUS    BIT3
 
+#define LS_ASL_START      0x0D
+#define LS_IR_START       0x0A
+#define LS_GRN_START      0x0D
+#define LS_BLU_START      0x10
+#define LS_RED_START      0x13
+
+/************************************************************
+* Define luminance resolutions, sample rates, and gain
+************************************************************/
 #define LS_MEAS_RATE      0x04
 #define LS_RES_20BIT      0x00
 #define LS_RES_19BIT      0x01
@@ -47,13 +56,9 @@
 #define LS_GAIN_9         0x03
 #define LS_GAIN_18        0x04
 
-#define LS_ASL_START      0x0D
-#define LS_IR_START       0x0A
-#define LS_GRN_START      0x0D
-#define LS_BLU_START      0x10
-#define LS_RED_START      0x13
-
-
+/**********************************************************
+* Luminance funcitons
+**********************************************************/
 void setup_lux(void);
 void read_lux_als_single(unsigned long * lux, unsigned char ls_pin);
 void read_lux_als(unsigned long * lux);

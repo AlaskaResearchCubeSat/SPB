@@ -38,7 +38,7 @@ void read_temp(int * temp){
           temp[i]=2222;
         }
       else if (check_value_tx == I2C_ERR_LEN)                   // returns a -3 in incorrect packet length
-        {
+        {                                                          // Shouldn't be returned on flight code
           temp[i]=3333;
         }
       else if (check_value_tx == I2C_ERR_BUSY_TIMEOUT)          // returns a -4 if busy waiting for bus

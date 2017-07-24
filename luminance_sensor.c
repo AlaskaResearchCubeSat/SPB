@@ -99,23 +99,23 @@ void read_lux_cs_single(unsigned long * lux, unsigned char ls_pin){
   i2c_tx(LS_ADDR,start_cs,2);                                   // Set up the LS 
   i2c_tx(LS_ADDR,gain,2);
   i2c_tx(LS_ADDR,resolution,2);
-  ctl_timeout_wait(ctl_get_current_time()+425);
+  ctl_timeout_wait(ctl_get_current_time()+425);                 // Wait for first measurement
 
   check_value = i2c_txrx(LS_ADDR,cs,1,cs_raw,12);               // Read the cs value bytes
-  if(check_value > 0){
+  if(check_value > 0){                                          // If received correctly
     for(j=0; j < 4; ++j){
       cs_val = 0;
       for(i=0; i < 3; ++i){
-        cs_val|=(unsigned long)cs_raw[i+j*3]<<8*i;            // Assemble the long from the read bytes
+        cs_val|=(unsigned long)cs_raw[i+j*3]<<8*i;                // Assemble the long from the read bytes
       }
       lux[j] = cs_val;
     }
-  }else{
+  }else{                                                        // If Error in transmission
     for(j=0; j < 4; ++j){
-      lux[j] = 9999;
+      lux[j] = 9999;                                              // Set long to 9999
     }
   }
-  LSOUT &= ~ls_pin;                                             // Turn off LS_1
+  LSOUT &= ~ls_pin;                                             // Turn off LS
 }
 
 /************************************************************
