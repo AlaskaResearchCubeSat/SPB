@@ -6,9 +6,15 @@
 ************************************************************/
 #define LS_ADDR           0x52
 
+#define LSDIR             P6DIR
+#define LSOUT             P6OUT
+
 #define LS_1              BIT4
 #define LS_2              BIT3
-#define LS_3              BIT2 // add more later
+#define LS_3              BIT2
+#define LS_4              BIT1
+#define LS_5              BIT0
+#define LS_6              BIT7 
 
 #define LS_MAIN_CTRL      0x00
 #define LS_PART_ID        0x06
@@ -48,9 +54,12 @@
 #define LS_RED_START      0x13
 
 
-void spb_setup(void);
-void read_lux_als(long * lux);
-void read_lux_rgb(long * lux);
-void read_lux_all(long * lux);
+void setup_lux(void);
+void read_lux_als_single(unsigned long * lux, unsigned char ls_pin);
+void read_lux_als(unsigned long * lux);
+void read_lux_cs_single(unsigned long * lux, unsigned char ls_pin);
+void read_lux_cs(unsigned long * lux);
+void read_lux_all_single(unsigned long * lux, unsigned char ls_pin);
+void read_lux_all(unsigned long * lux);
 
 #endif

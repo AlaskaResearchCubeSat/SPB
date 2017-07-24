@@ -1,7 +1,19 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
- <Bookmarks/>
- <Breakpoints/>
+ <Bookmarks>
+  <BookmarkItem column="0" line="237" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" number="7" extra="int cmd_read_temp(char **argv,unsigned short argc){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="250" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" number="8" extra="int cmd_read_lux(char **argv,unsigned short argc){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="267" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" number="9" extra="int cmd_start_lux(char **argv,unsigned short argc){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="285" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" number="10" extra="int cmd_status_lux(char **argv,unsigned short argc){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="7" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" number="6" extra="void setup_lux(void){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="18" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" number="5" extra="void read_lux_als_single(long * lux, unsigned char ls_pin){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="52" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" number="4" extra="void read_lux_als(long * lux){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="66" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" number="3" extra="void read_lux_rgb(long * lux){" name="unnamed" color="5" />
+  <BookmarkItem column="0" line="119" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" number="2" extra="void read_lux_all(long * lux){" name="unnamed" color="5" />
+ </Bookmarks>
+ <Breakpoints>
+  <BreakpointListItem line="60" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.h" expression="" />
+ </Breakpoints>
  <EEMRegistersWindow>
   <EEMRegisters moduleClockControl="2407" generalClockControl="2e" />
  </EEMRegistersWindow>
@@ -59,8 +71,8 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint evalMode="2" linenumber="267" numelements="8" evalType="0" radix="-1" name="read" expression="read" filename="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" />
-   <Watchpoint evalMode="3" linenumber="257" evalType="1" radix="16" name="argv" expression="argv" filename="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" />
+   <Watchpoint evalMode="3" linenumber="261" evalType="1" radix="16" name="argv" expression="argv" filename="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" />
+   <Watchpoint evalMode="2" linenumber="271" numelements="8" evalType="0" radix="-1" name="read" expression="read" filename="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -76,12 +88,12 @@
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-Software/include/ARCbus.h" y="32" path="Z:/ARC-2/ARC2-Software/include/ARCbus.h" left="0" selected="0" name="unnamed" top="12" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" y="210" path="Z:/arc-2/arc2-software/libraries/arclib/mainLoop.c" left="0" selected="0" name="unnamed" top="166" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="z:/arc-2/arc2-software/libraries/arclib/isr.c" y="397" path="Z:/arc-2/arc2-software/libraries/arclib/ISR.c" left="0" selected="0" name="unnamed" top="368" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/Executable_1.hzp" y="6" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/Executable_1.hzp" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="4" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/spb.c" y="73" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/spb.c" left="0" selected="0" name="unnamed" top="66" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="29" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/spb.h" y="29" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/spb.h" left="0" selected="0" name="unnamed" top="15" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/pins.h" y="2" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/pins.h" left="0" selected="0" name="unnamed" top="0" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/main.c" y="64" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/main.c" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="64" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" y="242" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" left="0" selected="1" name="unnamed" top="217" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="7" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" y="218" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/commands.c" left="0" selected="0" name="unnamed" top="189" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="3" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" y="154" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.c" left="0" selected="1" name="unnamed" top="132" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="67" debugPath="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.h" y="59" path="Z:/ARC-2/ARC2-SPB/ARC2-SPB Software Design/SPB-jig/luminance_sensor.h" left="0" selected="0" name="unnamed" top="43" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="50" debugPath="Z:/arc-2/arc2-spb/arc2-spb software design/spb-jig/temperature_sensor.c" y="19" path="Z:/arc-2/arc2-spb/arc2-spb software design/spb-jig/temperature_sensor.c" left="0" selected="0" name="unnamed" top="0" />
  </Files>
  <MSP430CrossStudioWindow activeProject="SPB-jig" autoConnectTarget="MSP-FET430UIF(V3)" debugSearchFileMap="" fileDialogInitialDirectory="Z:/ARC-2/ARC2-Software/Libraries/ARClib" fileDialogDefaultFilter="*.c" autoConnectCapabilities="528255" debugSearchPath="" buildConfiguration="MSP430 Debug" />
 </session>

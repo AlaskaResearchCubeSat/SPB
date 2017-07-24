@@ -207,15 +207,18 @@ int cmd_read_temp(char **argv,unsigned short argc){
 }
 
 int cmd_read_lux(char **argv,unsigned short argc){
-  long array[5];
-  int ii;
-
+  unsigned long array[5*6];
+  int ii,jj;
+  setup_lux();
   read_lux_all(array);
-
+  
   printf("Luminance, IR, Green, Blue, Red: \r\n");
-  for(ii = 0; ii < 5; ++ii){
-    printf("%lu, ",array[ii]);
-  }  
+  for(jj = 0; jj < 6; ++jj){
+    for(ii = 0; ii < 5; ++ii){
+      printf("%lu, ",array[ii+jj*5]);
+    }  
+    printf("\r\n");
+  }
 
   return 0;
 }
