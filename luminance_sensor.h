@@ -1,5 +1,5 @@
-#ifndef _LUMINANCE_SENSOR_H
-#define _LUMINANCE_SENSOR_H
+#ifndef _LUMINANCE_SENSOR_H_INCLUDED
+#define _LUMINANCE_SENSOR_H_INCLUDED
 
 /************************************************************
 * Define luminance addresses

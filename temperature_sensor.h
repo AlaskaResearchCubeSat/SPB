@@ -1,5 +1,5 @@
-#ifndef _TEMPERATURE_SENSOR_H
-#define _TEMPERATURE_SENSOR_H
+#ifndef _TEMPERATURE_SENSOR_H_INCLUDED
+#define _TEMPERATURE_SENSOR_H_INCLUDED
 
 /*************************************************
 * Defined temperature addresses

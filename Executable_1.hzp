@@ -27,6 +27,12 @@
       <file file_name="temperature_sensor.h" />
       <file file_name="luminance_sensor.c" />
       <file file_name="luminance_sensor.h" />
+      <file file_name="magnetometer.c">
+        <configuration Name="MSP430 Debug" build_exclude_from_build="No" />
+      </file>
+      <file file_name="magnetometer.h" />
+      <file file_name="ltc24xx.h" />
+      <file file_name="ltc24xx.c" />
     </folder>
     <folder Name="System Files">
       <configuration Name="Common" filter="xml" />

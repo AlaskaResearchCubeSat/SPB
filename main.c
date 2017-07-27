@@ -55,7 +55,7 @@ void main(void){
   
 
   // creating the tasks
-  ctl_task_run(&terminal_task,BUS_PRI_LOW,terminal,"Example Bare Bones program ready","terminal",sizeof(terminal_stack)/sizeof(terminal_stack[0])-2,terminal_stack-1,0);
+  ctl_task_run(&terminal_task,BUS_PRI_LOW,terminal,"SPB jig program ready","terminal",sizeof(terminal_stack)/sizeof(terminal_stack[0])-2,terminal_stack-1,0);
   
   //main loop <-- this is an ARCbus function 
   mainLoop(); 
