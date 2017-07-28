@@ -26,6 +26,7 @@
 ***********************************************/
 
 void setup_temp(void);
-void read_temp(int * temp);
+void read_temp_single(char addr, int * temp);
+void read_temp_all(int * temp);
 
 #endif

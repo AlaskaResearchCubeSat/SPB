@@ -25,6 +25,8 @@
 
   void mag_sr(void);
   int single_sample(unsigned short addr, long *dest);
+  int read_mag_single(unsigned short addr,long *dest);
+  void read_mag_all(long *dest);
 
 
 #endif

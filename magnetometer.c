@@ -41,121 +41,140 @@ void mag_sr(void){
   P7OUT &=~BIT0;
 }
 
-/*******************************************************************************
-* single_sample
-* take a reading from the magnetometer ADC
-*******************************************************************************/
-int single_sample(unsigned short addr,long *dest){
-  unsigned char rxbuf[4],txbuf[4];
-  int res;
-
-  //ctl_timeout_wait(adc_ready_time);
- 
-  //meas_LED_on();                                                //turn on LED while measuring
-  MAG_SR_OUT|=MAG_SR_PIN;                                       //generate set pulse
-  ctl_timeout_wait(ctl_get_current_time()+2);                   //delay for pulse
-  
-  txbuf[0]=LTC24XX_PRE|LTC24XX_EN|MAG_A_CH;                     //configure for first conversion convert in the A-axis
-
-  txbuf[1]=LTC24xx_EN2|LTC24xx_FA|MAG_ADC_GAIN;
-                     
-  res=i2c_tx(addr,txbuf,2);                                     //
-  if(res<0){
-    if(res==I2C_ERR_NACK){      
-      ctl_timeout_wait(ctl_get_current_time()+153);             //perhaps a conversion is in progress, wait for it to complete wait about 150ms
-      printf("Warning : Failed to setup sensor, return = %d \r\n",res);           //report a warning
-      res=i2c_tx(addr,txbuf,2);                                 //try sending again
-    }
-    if(res<0){
-      printf("Error : Failed to setup sensor\r\n");             //report error
-      MAG_SR_OUT&=~MAG_SR_PIN;                                  //generate reset pulse
-      
-      //sens_err_LED_on();                                      //turn on error LED      
-     // meas_LED_off();                                         //turn LED off, done measuring
-      //TODO : provide real error codes
-      return 2;
-    }
-  }
-  ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
-  txbuf[0]=LTC24XX_PRE|LTC24XX_EN|MAG_B_CH;                     //config for next conversion in the B-axis
-  if((res=i2c_txrx(addr,txbuf,1,rxbuf,3))<0){                   //read in data and start next conversion
-    
-    printf("Error : failed to read sensor data\r\n");           //report error
-    MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
-    
-   // sens_err_LED_on();                                        //turn on error LED 
-   // meas_LED_off();                                           //turn LED off, done measuring
-    //TODO : provide real error codes
-    return 2;
-  }
-  
-  dest[0]=adc_to_long(rxbuf);                                      //save result
-  ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
-  if((res=i2c_rx(addr,rxbuf,3))<0){                             //read in data
-    printf("Error : failed to read sensor data\r\n");           //report error
-    MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
-    
-   // sens_err_LED_on();                                        //turn on error LED
-   // meas_LED_off();                                           //turn LED off, done measuring
-    //TODO : provide real error codes
-    return 2;
-  } 
-  dest[1]=adc_to_long(rxbuf);                                      //save result
-   
-  MAG_SR_OUT&=~MAG_SR_PIN;                                      //generate reset pulse 
- // meas_LED_off();                                             //turn LED off, done measuring  
-  adc_ready_time=ctl_get_current_time()+153;                    //get time that ADC can next be read
-  //TODO: provide real return codes
-  return 0;
-}
 
 /*******************************************************************************
 * read_mag
 * take a reading from the magnetometer ADC
+* Returns 0 for successful read
+*         1 for failed to setup A
+*         2 for failed to read A/ setup B
+*         3 for failed to read B
 *******************************************************************************/
-int read_mag(unsigned short addr,long *dest){
+int read_mag_single(unsigned short addr,long *dest){
   unsigned char rxbuf[4],txbuf[4];
   int res;
 
   MAG_SR_OUT|=MAG_SR_PIN;                                       //generate set pulse
   ctl_timeout_wait(ctl_get_current_time()+2);                   //delay for pulse
   
-  set_gain(addr, MAG_A_CH, MAG_ADC_GAIN);
+  res = set_gain(addr, MAG_A_CH, MAG_ADC_GAIN);
  
   if(res<0){
     if(res==I2C_ERR_NACK){      
       ctl_timeout_wait(ctl_get_current_time()+153);             //perhaps a conversion is in progress, wait for it to complete wait about 150ms
-      res=i2c_tx(addr,txbuf,2);                                 //try sending again
+       res = set_gain(addr, MAG_A_CH, MAG_ADC_GAIN);            //try sending again
     }
     if(res<0){
       MAG_SR_OUT&=~MAG_SR_PIN;                                  //generate reset pulse
       
-      //TODO : provide real error codes
-      return 2;
+      return 1;
     }
   }
   ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
   txbuf[0]=LTC24XX_PRE|LTC24XX_EN|MAG_B_CH;                     //config for next conversion in the B-axis
-  if((res=i2c_txrx(addr,txbuf,1,rxbuf,3))<0){                   //read in data and start next conversion
-    
+  if((res=i2c_txrx(addr,txbuf,1,rxbuf,3))<0){                   //read in data and start next conversion   
     MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
-                                             
-    //TODO : provide real error codes
-    return 2;
+
+    return 2;                                                   
   }
   
-  dest[0]=adc_to_long(rxbuf);                                      //save result
+  dest[0]=adc_to_long(rxbuf);                                   //convert and save result
+
   ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
   if((res=i2c_rx(addr,rxbuf,3))<0){                             //read in data
     MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
     
-    //TODO : provide real error codes
-    return 2;
+    return 3;           
   } 
-  dest[1]=adc_to_long(rxbuf);                                      //save result
+  dest[1]=adc_to_long(rxbuf);                                   //convert and save result
    
   MAG_SR_OUT&=~MAG_SR_PIN;                                      //generate reset pulse 
-  //TODO: provide real return codes
+
   return 0;
 }
+
+void read_mag_all(long *dest){
+  int i,ret;
+  long temp[2];
+  const unsigned char mag_addrs[6] = {MAG_X_PLUS_ADDR, MAG_X_MINUS_ADDR, MAG_Y_PLUS_ADDR, 
+                                      MAG_Y_MINUS_ADDR, MAG_Z_PLUS_ADDR, MAG_Z_MINUS_ADDR};
+  for(i = 0; i < 6; ++i){
+    ret = read_mag_single(mag_addrs[i],temp);
+    if(ret > 0){
+      temp[0] = ret;
+      temp[1] = ret;
+    }
+    dest[i*2] = temp[0];
+    dest[i*2+1] = temp[1];
+  }
+}
  
+
+ ///*******************************************************************************
+//* single_sample
+//* take a reading from the magnetometer ADC
+//*******************************************************************************/
+//int single_sample(unsigned short addr,long *dest){
+//  unsigned char rxbuf[4],txbuf[4];
+//  int res;
+//
+//  //ctl_timeout_wait(adc_ready_time);
+// 
+//  //meas_LED_on();                                                //turn on LED while measuring
+//  MAG_SR_OUT|=MAG_SR_PIN;                                       //generate set pulse
+//  ctl_timeout_wait(ctl_get_current_time()+2);                   //delay for pulse
+//  
+//  txbuf[0]=LTC24XX_PRE|LTC24XX_EN|MAG_A_CH;                     //configure for first conversion convert in the A-axis
+//
+//  txbuf[1]=LTC24xx_EN2|LTC24xx_FA|MAG_ADC_GAIN;
+//                     
+//  res=i2c_tx(addr,txbuf,2);                                     //
+//  if(res<0){
+//    if(res==I2C_ERR_NACK){      
+//      ctl_timeout_wait(ctl_get_current_time()+153);             //perhaps a conversion is in progress, wait for it to complete wait about 150ms
+//      printf("Warning : Failed to setup sensor, return = %d \r\n",res);           //report a warning
+//      res=i2c_tx(addr,txbuf,2);                                 //try sending again
+//    }
+//    if(res<0){
+//      printf("Error : Failed to setup sensor\r\n");             //report error
+//      MAG_SR_OUT&=~MAG_SR_PIN;                                  //generate reset pulse
+//      
+//      //sens_err_LED_on();                                      //turn on error LED      
+//     // meas_LED_off();                                         //turn LED off, done measuring
+//      //TODO : provide real error codes
+//      return 2;
+//    }
+//  }
+//  ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
+//  txbuf[0]=LTC24XX_PRE|LTC24XX_EN|MAG_B_CH;                     //config for next conversion in the B-axis
+//  if((res=i2c_txrx(addr,txbuf,1,rxbuf,3))<0){                   //read in data and start next conversion
+//    
+//    printf("Error : failed to read sensor data\r\n");           //report error
+//    MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
+//    
+//   // sens_err_LED_on();                                        //turn on error LED 
+//   // meas_LED_off();                                           //turn LED off, done measuring
+//    //TODO : provide real error codes
+//    return 2;
+//  }
+//  
+//  dest[0]=adc_to_long(rxbuf);                                      //save result
+//  ctl_timeout_wait(ctl_get_current_time()+153);                 //wait for conversion to complete wait about 150ms
+//  if((res=i2c_rx(addr,rxbuf,3))<0){                             //read in data
+//    printf("Error : failed to read sensor data\r\n");           //report error
+//    MAG_SR_OUT&=~MAG_SR_PIN;                                    //generate reset pulse
+//    
+//   // sens_err_LED_on();                                        //turn on error LED
+//   // meas_LED_off();                                           //turn LED off, done measuring
+//    //TODO : provide real error codes
+//    return 2;
+//  } 
+//  dest[1]=adc_to_long(rxbuf);                                      //save result
+//   
+//  MAG_SR_OUT&=~MAG_SR_PIN;                                      //generate reset pulse 
+// // meas_LED_off();                                             //turn LED off, done measuring  
+//  adc_ready_time=ctl_get_current_time()+153;                    //get time that ADC can next be read
+//  //TODO: provide real return codes
+//  return 0;
+//}
+

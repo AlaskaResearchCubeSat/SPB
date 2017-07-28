@@ -1,3 +1,8 @@
+/*******************************************************************************
+* LTC24xx firmware 
+* 
+*******************************************************************************/
+
 #ifndef _LTC24XX_H_INCLUDED
 #define _LTC24XX_H_INCLUDED
 
@@ -68,6 +73,12 @@ int set_gain(short addr,short channel,short gain);
 * and set the gain on all LTC24XX devices
 *******************************************************************************/
 int set_all_gain(short channel,short gain);
+
+/******************************************************************************
+* test_ltc24xx
+* Function that verifies the firmware code is functioning as expected
+******************************************************************************/
+int test_ltc24xx(char **argv, unsigned short argc);
 
 #endif
   

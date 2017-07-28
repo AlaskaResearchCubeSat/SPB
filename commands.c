@@ -34,7 +34,7 @@ int cmd_read_temp(char **argv,unsigned short argc){
   int array[7];
   int ii;
 
-  read_temp(array);
+  read_temp_all(array);
 
   printf("Temperatures: \r\n");
   for(ii = 0; ii < 7; ++ii){
@@ -74,193 +74,81 @@ int cmd_read_lux(char **argv,unsigned short argc){
   return 0;
 }
 
-int cmd_read_mag(char **argv,unsigned short argc){
+/**************************************************************************
+* cmd_read_lux
+* Reads and displays the luminance measurements for all 6 sensors
+**************************************************************************/
+int cmd_read_mag_single(char **argv,unsigned short argc){
   float meas;
   meas = read_adc(MAG_X_PLUS_ADDR);
   printf("Measurement %f \r\n",meas);
   return 0;
 }
 
-int cmd_single_sample(char **argv, unsigned short argc){
-  long data[2]={0,0};
-  single_sample(MAG_X_PLUS_ADDR,data);
-  printf("Measurement %ld, %ld \r\n",data[0],data[1]);
+/**************************************************************************
+* cmd_read_lux
+* Reads and displays the luminance measurements for all 6 sensors
+**************************************************************************/
+int cmd_read_mag(char **argv, unsigned short argc){
+  long data[12];
+  int ii;
+
+  read_mag_all(data);
+  for(ii = 0; ii < 6; ++ii){
+    printf("Measurement %ld, %ld \r\n", data[ii*2], data[ii*2 + 1]);
+  }
+
   return 0;
 }
 
-//**************************************************************************************
-int test_ltc24xx(char **argv, unsigned short argc){//command 
-  int i2c_ret;
-  long temp;
-  unsigned char data[3];
-  short fail = 0;
+/*************************************************************************
+* test_spb
+*
+*************************************************************************/
+int test_spb(char **argv, unsigned short argc){
+  int ii,ret;
+  int temp_data[7];
+  unsigned long lux_data[6];
+  long mag_data[12];
+  char sides[6][4] = {"X+\0", "X-\0", "Y+\0", "Y-\0", "Z+\0", "Z-\0"};
+  const unsigned char mag_addrs[6] = {MAG_X_PLUS_ADDR, MAG_X_MINUS_ADDR, MAG_Y_PLUS_ADDR, 
+                                      MAG_Y_MINUS_ADDR, MAG_Z_PLUS_ADDR, MAG_Z_MINUS_ADDR};
 
-  printf("Starting LTC24xx code test: \r\n");
-  printf("Testing setting the channel \r\n");
-  i2c_ret = set_channel(MAG_X_PLUS_ADDR,LTC24xx_CH_0);            // Pass a correct address
-  if(i2c_ret < 0){
-    fail = 1;
-    printf("Failed setting the channel \r\n");
-  }else{
-    printf("...passed \r\n");
+  
+  ///////////////////////////////////////////////////////////////////
+  printf("Starting sensor check for the SPB... \r\n");
+
+  read_temp_all(temp_data);
+
+  for(ii = 0; ii < 6; ++ii){
+    if(temp_data[ii] < 1000){
+      printf("Temperature address is: %s \r\n",sides[ii]);
+    }
   }
+  ///////////////////////////////////////////////////////////////////////
+  
+  setup_lux();
 
-  i2c_ret = set_channel(0x00,LTC24xx_CH_0);                       // Fail an incorrect address
-  if(i2c_ret > 0){
-    fail = 1;
-    printf("Failed handling i2c error in setting the channel \r\n");
-  }else{
-    printf("...passed \r\n");
-  }
-
-  printf("Testing setting the gain \r\n");
-  i2c_ret = set_gain(MAG_X_PLUS_ADDR,LTC24xx_CH_0,LTC24xx_GAIN1); // Pass a correct address
-  if(i2c_ret < 0){
-    fail = 1;
-    printf("Failed setting the gain \r\n");
-  }else{
-    printf("...passed \r\n");
-  }
-
-  i2c_ret = set_gain(0x00,LTC24xx_CH_0,LTC24xx_GAIN1);            // Fail an incorrect address
-  if(i2c_ret > 0){
-    fail = 1;
-    printf("Failed handling i2c error in setting the gain \r\n");
-  }else{
-    printf("...passed \r\n");
-  }
-
-  i2c_ret = set_all_gain(LTC24xx_CH_0,LTC24xx_GAIN1);             // Pass a correct address
-  if(i2c_ret < 0){
-    fail = 1;
-    printf("Failed setting the global gain \r\n");
-  }else{
-    printf("...passed \r\n");
+  read_lux_als(lux_data);
+  for(ii = 0; ii < 6; ++ii){
+    if(lux_data[ii] != 9999){
+      printf("Luminance address is: %s \r\n",sides[ii]);
+    }
   }
   
-  printf("Testing the convertions \r\n");
-  data[0] = 0x00;                                               // min value
-  data[1] = 0x00;
-  data[2] = 0x00;
-  temp = adc_to_long(data); 
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != -65536){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0x00;                                               // min value
-  data[1] = 0xFF;
-  data[2] = 0xFF;
-  temp = adc_to_long(data); 
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != -65536){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0x40;                                               // min value
-  data[1] = 0x00;
-  data[2] = 0x00;
-  temp = adc_to_long(data); 
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != -65536){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-  data[0] = 0x40;                                               // min value +1
-  data[1] = 0x00;
-  data[2] = 0x40;
-  temp = adc_to_long(data); 
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != -65535){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0xFF;                                               // max value
-  data[1] = 0xFF;
-  data[2] = 0xFF;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != 65536){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0xC0;                                               // max value
-  data[1] = 0x00;
-  data[2] = 0x00;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != 65536){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0xBF;                                               // max value -1
-  data[1] = 0xFF;
-  data[2] = 0xFF;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != 65535){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0x80;                                               // 0
-  data[1] = 0x00;
-  data[2] = 0x00;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != 0){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0x7F;                                              // -1
-  data[1] = 0xFF;
-  data[2] = 0xFF;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != -1){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
-
-  data[0] = 0x80;                                             // 5
-  data[1] = 0x01;
-  data[2] = 0x40;
-  temp = adc_to_long(data);
-  printf("Convertion value: %ld \r\n",temp);
-  if(temp != 5){
-    fail = 1;
-    printf("         ...Failed\r\n");
-  }
+  //////////////////////////////////////////////////////////////
   
-  printf("Test read from sensor \r\n");
-  temp = read_adc(MAG_X_PLUS_ADDR);                         // valid
-  printf("Measured value: %ld \r\n",temp);
-  if(temp > 65536 || temp <-65536){
-    fail = 1;
-    printf("Failed \r\n");
+  for(ii = 0; ii < 6; ++ii){
+    ret = read_mag_single(mag_addrs[ii],mag_data);
+    if(ret == 0){
+      printf("Magnetometer address is: %s \r\n",sides[ii]);
+    }
   }
 
-  temp = read_adc(0x00);                                    // invalid
-  printf("Measured value: %ld \r\n",temp);
-  if(temp != -70000){
-    fail = 1;
-    printf("Failed \r\n");
-  }
-
-  if(fail){
-    printf("FAILED, one or more tests have failed.\r\nRead log to determine which test failed. \r\n");
-  }else{
-    printf("*****************PASSED!**************** \r\n");
-  }
-  
   return 0;
 }
+
+
 
 
 
@@ -268,9 +156,8 @@ int test_ltc24xx(char **argv, unsigned short argc){//command
 const CMD_SPEC cmd_tbl[]={{"help"," [command]",helpCmd},
                    {"read_temp","Read the values from all the temperature sensors",cmd_read_temp},
                    {"read_lux","Read the values from all the luminance sensors",cmd_read_lux},
-                   {"single_sample","MAg",cmd_single_sample},
-                   {"read_mag","mag",cmd_read_mag},
-                   {"test_ltc24xx","test code",test_ltc24xx},
+                   {"read_mag","Read the values from the magnetometer sensor",cmd_read_mag},
+                   {"test_spb","Reads all the sensors on the SPB board and says which board was plugged in.",test_spb},
 
                    ARC_COMMANDS,CTL_COMMANDS,ERROR_COMMANDS,
                    //end of list
