@@ -8,6 +8,7 @@ Then function must be added to the "const CMD_SPEC cmd_tbl[]={{"help"," [command
 #include <string.h>
 #include <ctype.h>
 #include <msp430.h>
+#inlcude <UCA1_uart.h>
 
 // ARC2 libs
 #include <terminal.h>
@@ -109,10 +110,13 @@ int test_spb(char **argv, unsigned short argc){
   int ii,ret;
   int temp_data[7];
   unsigned long lux_data[6];
-  long mag_data[12];
+  long mag_data[2];
   char sides[6][4] = {"X+\0", "X-\0", "Y+\0", "Y-\0", "Z+\0", "Z-\0"};
+  const unsigned char all_temp_sensors[TEMP_SENSORS]={TEMP_X_PLUS, TEMP_X_MINUS, TEMP_Y_PLUS, TEMP_Y_MINUS, 
+                                                      TEMP_Z_PLUS, TEMP_Z_MINUS, TEMP_L_BOARD};
   const unsigned char mag_addrs[6] = {MAG_X_PLUS_ADDR, MAG_X_MINUS_ADDR, MAG_Y_PLUS_ADDR, 
                                       MAG_Y_MINUS_ADDR, MAG_Z_PLUS_ADDR, MAG_Z_MINUS_ADDR};
+           
 
   
   ///////////////////////////////////////////////////////////////////
@@ -123,6 +127,11 @@ int test_spb(char **argv, unsigned short argc){
   for(ii = 0; ii < 6; ++ii){
     if(temp_data[ii] < 1000){
       printf("Temperature address is: %s \r\n",sides[ii]);
+      printf("The Temperature is: %d \r\n",temp_data[ii]);
+      printf("Please place your finger on the temperature sensor and then press enter. \r\n");
+      while(UCA2_CheckKey()==EOF){}
+      read_temp_single(all_temp_sensors[ii],temp_data);
+      printf("The Temperature is: %d \r\n",temp_data[0]);
     }
   }
   ///////////////////////////////////////////////////////////////////////
@@ -133,6 +142,11 @@ int test_spb(char **argv, unsigned short argc){
   for(ii = 0; ii < 6; ++ii){
     if(lux_data[ii] != 9999){
       printf("Luminance address is: %s \r\n",sides[ii]);
+      printf("The Luminance is: %lu \r\n",lux_data[ii]);
+      printf("Please change the light condition on the luminance sensor and then press enter. \r\n");
+      while(UCA2_CheckKey()==EOF){}
+      read_lux_als_single(lux_data,LS_1);
+      printf("The Luminance is: %lu \r\n",lux_data[0]);
     }
   }
   
@@ -142,6 +156,11 @@ int test_spb(char **argv, unsigned short argc){
     ret = read_mag_single(mag_addrs[ii],mag_data);
     if(ret == 0){
       printf("Magnetometer address is: %s \r\n",sides[ii]);
+      printf("The magnetic field is: %ld, %ld \r\n",mag_data[0],mag_data[1]);
+      printf("Please move the magnet near the magnetometer and then press enter. \r\n");
+      while(UCA2_CheckKey()==EOF){}
+      read_mag_single(mag_addrs[ii],mag_data);
+      printf("The magnetic field is: %ld, %ld \r\n",mag_data[0],mag_data[1]);
     }
   }
 
